@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Movie } from './entities/movie.entity';
 
 @Injectable()
@@ -10,9 +10,13 @@ export class MoviesService {
     }
 
     getOne(id:string):Movie{
-        return this.movies.find(movie=>movie.id==parseInt(id));
+        const movie = this.movies.find(movie=>movie.id==parseInt(id));
         // string을 number로 바꿈.
         // parseInt(id) 를 +id 라고만 해도 됨. 
+        if(!movie){
+            throw new NotFoundException(`Movie with ID ${id} not found`);
+    }
+    return movie
     }
 
     deleteOne(id:string ):boolean{
