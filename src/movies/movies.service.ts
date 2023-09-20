@@ -15,7 +15,7 @@ export class MoviesService {
         // parseInt(id) 를 +id 라고만 해도 됨. 
         if(!movie){
             throw new NotFoundException(`Movie with ID ${id} not found`);
-    }
+    },
     return movie
     }
 
