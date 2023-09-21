@@ -16,12 +16,13 @@ export class MoviesService {
         if(!movie){
             throw new NotFoundException(`Movie with ID ${id} not found`);
     }
-    return movie
+    return movie;
     }
 
-    deleteOne(id:string ):boolean{
-        this.movies.filter(movie =>movie.id !== +id);
-        return true; 
+    deleteOne(id:string ){
+        this.getOne(id)
+        this.movies.filter(movie=>movie.id !==+id);
+        //return true; 
     }
 
     create(movieData){
