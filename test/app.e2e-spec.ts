@@ -14,11 +14,11 @@ describe('AppController (e2e)', () => {
     app = moduleFixture.createNestApplication()
     app.useGlobalPipes(
       new ValidationPipe({
-        whitelist:true,
-        forbidNonWhitelisted:true,
-        transform:true,
-      })
-    );
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true,
+      }),
+    )
     await app.init()
   })
 
@@ -33,24 +33,37 @@ describe('AppController (e2e)', () => {
     it('GET', () => {
       return request(app.getHttpServer()).get('/movies').expect(200).expect([])
     })
-    it('POST', () => {
+    it('POST 201', () => {
       return request(app.getHttpServer())
         .post('/movies')
         .send({ title: 'Test', year: 2000, genres: ['test'] })
         .expect(201)
     })
+    it('POST 400', () => {
+      return request(app.getHttpServer())
+        .post('/movies')
+        .send({ title: 'Test', year: 2000, genres: ['test'], other: 'thing' })
+        .expect(400)
+    })
     it('DELETE', () => {
       return request(app.getHttpServer()).delete('/movies').expect(404)
     })
   })
-  describe('/movies/:id',()=>{
-    it.todo("GET 200", ()=>{
+  describe('/movies/:id', () => {
+    it.todo('GET 200', () => {
       return request(app.getHttpServer()).get('/movies/1').expect(200)
     })
-    it.todo("GET 404", ()=>{
+    it.todo('GET 404', () => {
       return request(app.getHttpServer()).get('/movies/999').expect(404)
     })
-    it.todo("DELETE")
-    it.todo("PATCH")
+    it.todo('PATCH', () => {
+      return request(app.getHttpServer())
+        .patch('/movies/1')
+        .send({ title: 'Update Test' })
+        .expect(200)
+    })
+    it.todo('DELETE', () => {
+      return request(app.getHttpServer()).delete('/movies/1').expect(200)
+    })
   })
 })
