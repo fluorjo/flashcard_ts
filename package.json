@@ -1,8 +1,8 @@
 {
-  "name": "graphql-book-fullstack-project",
+  "name": "flashcard_ts",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/fluorjo/graphql-fullstack-practice.git",
+  "repository": "https://github.com/fluorjo/flashcard_web.git",
   "author": "fluorjo <fluorjo@naver.com>",
   "license": "MIT",
   "private": true
