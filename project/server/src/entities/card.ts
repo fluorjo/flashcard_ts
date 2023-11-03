@@ -1,7 +1,7 @@
 import { Field, Int, ObjectType } from 'type-graphql'
 
 @ObjectType()
-export class card {
+export class Card {
   @Field(() => Int, { description: '카드 아이디' })
   id: number
 
