@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from 'react'
 import {
   ChakraProvider,
   Box,
@@ -8,31 +8,21 @@ import {
   Code,
   Grid,
   theme,
-} from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+} from '@chakra-ui/react'
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+import { useTranslation } from 'react-i18next'
+
+function App() {
+  const { t, i18n } = useTranslation()
+  const changelanguageToKo = () => i18n.changeLanguage('ko')
+  const changelanguageToEn = () => i18n.changeLanguage('en')
+  return (
+    <div>
+      <span>language : {i18n.language}</span>
+      <h1>{t('welcome')}</h1>
+      <button onClick={changelanguageToKo}>Korean</button>
+      <button onClick={changelanguageToEn}>English</button>
+    </div>
+  )
+}
+export default App
