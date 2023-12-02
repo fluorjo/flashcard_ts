@@ -18,7 +18,7 @@ import Login from './pages/Login'
 import { useTranslation } from 'react-i18next'
 const apolloClient = createApolloClient()
 
-export const App: React.FC = () => {
+ const App: React.FC = () => {
   // const { t, i18n } = useTranslation()
   // const changelanguageToKo = () => i18n.changeLanguage('ko')
   // const changelanguageToEn = () => i18n.changeLanguage('en')
@@ -42,3 +42,5 @@ export const App: React.FC = () => {
     </ApolloProvider>
   )
 }
+
+export default App
