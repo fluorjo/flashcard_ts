@@ -1,3 +1,5 @@
+// web/src/components/ColorModeSwitcher
+
 import * as React from "react"
 import {
   useColorMode,
