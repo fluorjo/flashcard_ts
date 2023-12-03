@@ -1,3 +1,5 @@
+// server/src/entities/User.ts
+
 import { Field, Int, ObjectType } from 'type-graphql'
 import {
   BaseEntity,
