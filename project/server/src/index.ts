@@ -8,6 +8,7 @@ import { ApolloServer } from 'apollo-server-express'
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
 import { createDB } from './db/db-client'
 import { UserResolver } from './resolvers/User'
+import { CardResolver } from './resolvers/Card'
 
 async function main() {
   createDB
@@ -23,13 +24,14 @@ async function main() {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver],
+      resolvers: [UserResolver, CardResolver],
     }),
     plugins: [ApolloServerPluginLandingPageLocalDefault()],
   })
   await apolloServer.start()
   apolloServer.applyMiddleware({ app })
   const httpServer = http.createServer(app)
+
   httpServer.listen(process.env.PORT || 4000, () => {
     if (process.env.NODE_ENV !== 'production') {
       console.log(`

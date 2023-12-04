@@ -6,8 +6,8 @@ export class Card {
   id: number
 
   @Field(() => Int, { description: '제작자 아이디' })
-  director_id: number
+  creator_id: string
 
   @Field(() => Int, { description: '작성일' })
-  created_date: number
+  created_date: string
 }
