@@ -1,40 +1,46 @@
-import 'reflect-metadata'
+/* eslint-disable no-console */
+// server/src/index.ts
+
 import express from 'express'
-import { ApolloServer, gql } from 'apollo-server-express'
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
 import http from 'http'
+import { buildSchema } from 'type-graphql'
+import { ApolloServer } from 'apollo-server-express'
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core'
+import { createDB } from './db/db-client'
+import { UserResolver } from './resolvers/User'
 
 async function main() {
+  createDB
+    .initialize()
+    .then(() => {
+      console.log('Data Source has been initialized!')
+    })
+    .catch((err) => {
+      console.error('Error during Data Source initialization', err)
+    })
+
   const app = express()
 
   const apolloServer = new ApolloServer({
-    typeDefs: gql`
-      type Query {
-        hello: String
-      }
-    `,
-    resolvers: {
-      Query: {
-        hello: () => 'hello~~~',
-      },
-    },
+    schema: await buildSchema({
+      resolvers: [UserResolver],
+    }),
     plugins: [ApolloServerPluginLandingPageLocalDefault()],
   })
   await apolloServer.start()
   apolloServer.applyMiddleware({ app })
   const httpServer = http.createServer(app)
-
   httpServer.listen(process.env.PORT || 4000, () => {
     if (process.env.NODE_ENV !== 'production') {
       console.log(`
-    server start on =>http://localhost:4000
-    graphql playground =>http://localhost:4000/graphql
-    `)
+      server started on => http://localhost:4000
+      graphql playground => http://localhost:4000/graphql
+      `)
     } else {
       console.log(`
-        production server started...`)
+      Production server Started...
+      `)
     }
   })
 }
-
 main().catch((err) => console.error(err))
