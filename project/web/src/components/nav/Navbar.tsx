@@ -140,7 +140,7 @@ export default function Navbar(): JSX.Element {
             fontWeight="bold"
             color={useColorModeValue('gray.800', 'white')}
           >
-            지브리 베스트 컷
+            flashcard
           </Link>
         </Flex>
 
