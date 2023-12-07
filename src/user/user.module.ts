@@ -9,5 +9,6 @@ import { User } from './user.entity'
   imports: [TypeOrmModule.forFeature([User])], //엔티티를 모듈에 추가.
   controllers: [UserController],
   providers: [UserService],
+  exports: [UserService],
 })
 export class UserModule {}
