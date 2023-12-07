@@ -30,7 +30,7 @@ export class UserService {
     console.log(user)
     this.userRepository.save(user)
   }
-  deletUser(email: any) {
+  deleteUser(email: any) {
     return this.userRepository.delete({ email })
   }
 }
