@@ -3,16 +3,25 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
-  "username":"fff2",
-  "password":"test1234",
-  "email":"test@test.com"
+  "username":"aa2",
+  "password":"12345",
+  "email":"test4@test.com"
 }
 ### login
 POST http://localhost:3000/auth/login
 content-type: application/json
 
 {
-  "username":"fff2",
-  "password":"test1234",
-  "email":"test@test.com"
+  "password":"12345",
+  "email":"test4@test.com"
 }
+### login2
+POST http://localhost:3000/auth/login2
+content-type: application/json
+
+{
+  "password":"12345",
+  "email":"test4@test.com"
+}
+### Guard 테스트
+GET http://localhost:3000/auth/test-guard
