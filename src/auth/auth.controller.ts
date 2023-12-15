@@ -33,7 +33,8 @@ export class AuthController {
     if (userInfo) {
       res.cookie('login', JSON.stringify(userInfo), {
         httpOnly: false, // ❹ 브라우저에서 읽을 수 있도록 함
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 7day 단위는 밀리초
+        // maxAge: 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 6,
       })
     }
     return res.send({ message: 'login success' })
