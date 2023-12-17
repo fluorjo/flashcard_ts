@@ -21,6 +21,7 @@ export class SessionSerializer extends PassportSerializer {
       done(new Error('No User'), null)
       return
     }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...userInfo } = user
     done(null, userInfo)
   }
