@@ -6,7 +6,7 @@ import { UserService } from 'src/user/user.service'
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: UserService) {
-    super({ usernameField: 'email' })
+    console.log(process.env)
 
     super({
       clientID: process.env.GOOGLE_CLIENT_ID,
@@ -17,7 +17,6 @@ export class GoogleStrategy extends PassportStrategy(Strategy) {
   }
   async validate(accessToken: string, refreshToken: string, profile: Profile) {
     const { id, name, emails } = profile
-
     console.log(accessToken)
     console.log(refreshToken)
 

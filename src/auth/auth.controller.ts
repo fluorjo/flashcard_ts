@@ -7,7 +7,12 @@ import {
   Response,
   UseGuards,
 } from '@nestjs/common'
-import { AuthenticatedGuard, LocalAuthGuard, LoginGuard } from './auth.guard'
+import {
+  AuthenticatedGuard,
+  LocalAuthGuard,
+  LoginGuard,
+  GoogleAuthGuard,
+} from './auth.guard'
 import { CreateUserDto } from 'src/user/user.dto'
 import { AuthService } from './auth.service'
 
@@ -71,5 +76,16 @@ export class AuthController {
   @Get('test-guard2')
   testGuardWithSession(@Request() req) {
     return req.user
+  }
+  @Get('to-google')
+  @UseGuards(GoogleAuthGuard)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  async googleAuth(@Request() req) {}
+
+  @Get('google')
+  @UseGuards(GoogleAuthGuard)
+  async googleAuthRedirect(@Request() req, @Response() res) {
+    const { user } = req
+    return res.send(user)
   }
 }
