@@ -37,9 +37,9 @@ export class AuthController {
     // ❸ 유저 정보가 있으면, 쿠키 정보를 Response에 저장
     if (userInfo) {
       res.cookie('login', JSON.stringify(userInfo), {
-        httpOnly: false, // ❹ 브라우저에서 읽을 수 있도록 함
-        // maxAge: 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 6,
+        httpOnly: true, // ❹ 브라우저에서 읽을 수 있도록 함
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        // maxAge: 1000 * 6,
       })
     }
     return res.send({ message: 'login success' })
