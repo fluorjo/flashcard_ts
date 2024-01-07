@@ -5,15 +5,24 @@ import { PrismaClient } from "@prisma/client";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/helpers/prismadb";
 import bcrypt from "bcryptjs";
+import NaverProvider from "next-auth/providers/naver";
 
 // authOptions를 다른 곳에서도 사용해야 하기 때문에 NextAuth와 분리함.
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
+    // google 연동
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
+
+    // naver 연동
+    NaverProvider({
+      clientId: process.env.NAVER_CLIENT_ID!,
+      clientSecret: process.env.NAVER_CLIENT_SECRET!,
+    }),
+
     CredentialsProvider({
       name: "Credentials",
 
