@@ -64,8 +64,7 @@ export const authOptions: NextAuthOptions = {
   jwt: {
     //middleware와 통일시켜야 함.
     secret: process.env.JWT_SECRET,
-    // maxAge: 30 * 24 * 60 * 60, // 30 days
-    maxAge: 1, // 30 days
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   pages: {
     signIn: "/auth/login",
